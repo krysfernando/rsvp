@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text RSVP</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #faf7f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .box {
+      max-width: 420px;
+      padding: 24px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 14px 20px;
+      background: black;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Text RSVP 💬</h2>
+    <p>Tap below to open your messaging app and confirm attendance.</p>
+
+    <a class="button" id="smsLink" href="#">
+      Open Messages
+    </a>
+  </div>
+
+  <script>
+    const phone = "+1234567890";
+
+    const message =
+      "Hi! I am confirming that I will be attending your wedding. Looking forward to celebrating with you both!";
+
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const separator = isIOS ? "&" : "?";
+
+    document.getElementById("smsLink").href =
+      `sms:${phone}${separator}body=${encodeURIComponent(message)}`;
+  </script>
+</body>
+</html>
