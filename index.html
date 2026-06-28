@@ -22,6 +22,16 @@
       padding: 24px;
     }
 
+    h2 {
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #444;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
     a.button {
       display: inline-block;
       margin: 10px;
@@ -29,6 +39,7 @@
       border-radius: 8px;
       text-decoration: none;
       font-size: 16px;
+      min-width: 180px;
     }
 
     .email {
@@ -46,17 +57,31 @@
 <body>
   <div class="card">
     <h2>Wedding RSVP 💍</h2>
-    <p>Please choose how you'd like to respond:</p>
+    <p>Please choose how you'd like to confirm your attendance.</p>
 
+    <!-- EMAIL RSVP -->
     <a class="button email"
        href="mailto:your@email.com?subject=Wedding%20RSVP">
-       RSVP by Email
+      RSVP by Email
     </a>
 
-    <a class="button text"
-       href="./rsvp.html">
-       RSVP by Text
+    <!-- SMS RSVP -->
+    <a class="button text" id="smsLink" href="#">
+      RSVP by Text
     </a>
   </div>
+
+  <script>
+    const phone = "+1234567890";
+
+    const message =
+      "Hi! I am confirming that I will be attending your wedding. Looking forward to celebrating with you both!";
+
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const separator = isIOS ? "&" : "?";
+
+    document.getElementById("smsLink").href =
+      `sms:${phone}${separator}body=${encodeURIComponent(message)}`;
+  </script>
 </body>
 </html>
